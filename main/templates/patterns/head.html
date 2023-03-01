@@ -21,6 +21,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+
 
 
     <style>
@@ -43,3 +45,19 @@
 
     </style>
 
+    <script>
+    $(document).ready(function() {
+    	$('a[*|href^="#"]').on('click',function (e) {
+    		e.preventDefault();
+
+    		var target = $(this).attr('xlink:href');
+    		var $target = $(target);
+
+    		$('html, body').stop().animate({
+    			'scrollTop': $target.offset().top
+    		}, 300, 'swing', function () {
+    			window.location.hash = target;
+    		});
+    	});
+    });
+</script>
