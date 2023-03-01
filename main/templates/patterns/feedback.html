@@ -1,0 +1,166 @@
+
+<style>
+            @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+                .feedback__body{
+                    width: 90%;
+                }
+            }
+
+            .feedback{
+                  font-family: 'Noto Sans', sans-serif;
+                  position: fixed;
+                  width: 100%;
+                  height: 100%;
+                  top: 0;
+                  left: 0;
+                  background: rgba(17, 17, 17, 0.5);
+                  transition: all 0.5s ease;
+                  display: none;
+                    overflow:hidden;
+
+            }
+
+            .submit-btn{
+                margin-top: 50px;
+                font-size: 20px;
+                border: 1px solid rgba(0,0,0,.125);
+                border-radius: 0.25rem;
+                background: white;
+                padding: 8px 18px;
+            }
+
+            .feedback__container {
+             display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+            }
+
+            .mui-textfield>input, .mui-textfield>textarea {
+                text-align: center;
+                border-bottom: 1px solid black;
+            }
+
+            .mui-textfield > input:focus, .mui-textfield > textarea:focus {
+                border-color: black;
+                border-width: 2px;
+            }
+
+            .mui-textfield>textarea:focus~label{color:black}
+
+            .mui-textfield>input:focus~label{color:black}
+
+            .mui-textfield--float-label>label {
+                color: grey;
+            }
+
+
+            .feedback-title{
+                margin-bottom: 36px;
+                font-size: 28px;
+            }
+
+            .feedback__body {
+                overflow:hidden;
+                position: absolute;
+                box-shadow: rgba(0, 0, 0, 0.2) 0px 11px 15px -7px, rgba(0, 0, 0, 0.14) 0px 24px 38px 3px, rgba(0, 0, 0, 0.12) 0px 9px 46px 8px;
+                background: #fff;
+                border-radius: 2px;
+                border-color: black;
+                max-width: 588px;
+                border: 2px solid #292929;
+                outline: 3px solid white;
+                padding: 60px;
+            }
+
+            .feedback-close{
+                outline: none !important;
+                position: absolute;
+                top: 1%;
+                right: 1%;
+                border: none;
+                background: none;
+                font-size: 28px;
+            }
+
+
+            @keyframes feedback {
+              from {
+                opacity: 0;
+              }
+              to {
+                opacity: 1;
+              }
+            }
+        </style>
+
+        <script>
+            $(document).ready(function(){
+              $('.feedback-close').click(function(){
+                  $('.feedback').fadeOut(100);
+              });
+
+              $('.nav-link').click(function(){
+
+                $('.feedback').fadeIn(100)
+
+              });
+            });
+        </script>
+
+
+
+
+        <div class="feedback fixed-top">
+            <div class="feedback__container ">
+                <div class="feedback__body row d-flex justify-content-center articles" class="mui-form">
+                    <button class="feedback-close"><i class="la la-close"></i></button>
+                    <div class="col-sm-11 col-md-12 col-lg-12 col-xl-12 text-center item" style="padding: 0px">
+                        {% if not messages %}
+                        <form method="POST" enctype="multipart/form-data " action="/new_request" class="mui-form">
+
+                             <h2 class="feedback-title">Оставить заявку</h2>
+
+                            {% csrf_token %}
+
+
+
+
+
+
+
+                            <div class="mui-textfield mui-textfield--float-label" >
+
+                                {{ form.name }}
+                                 <label>Ваше имя</label>
+                            </div>
+
+                            <div class="mui-textfield mui-textfield--float-label">
+                                {{ form.description }}
+                                <label>Способ связи</label>
+                            </div>
+
+
+
+                            <div class="checkbox checkbox-circle">
+
+                                <label>{{ form.resume }} Хочу быть экскурсоводом</label>
+                            </div>
+
+
+
+                            <button type="submit" class="submit-btn">Отправить</button>
+
+
+
+
+                        </form>
+                        {% else %}
+                            {% for message in messages %}
+                                <h2>{{ message }}</h2>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>

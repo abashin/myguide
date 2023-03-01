@@ -1,0 +1,311 @@
+<html>
+
+{% load static %}
+{% load svg %}
+
+<head>
+
+    <title>Мой экскурсовод</title>
+    {% include "patterns/head.html" %}
+    {% include "patterns/feedback.html" %}
+</head>
+
+<style>
+    .district_map{
+        max-height: 458px;
+    }
+
+    .social-links{
+        border: solid 1px rgba(0, 0, 0, 0.2);
+        padding: 7px 13px ;
+        border-radius: 2px;
+        font-size: 17px;
+    }
+
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        #svg-info{
+            order: 0;
+        }
+
+        #text-info{
+            order: 1;
+        }
+
+        .district-group{
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map{
+            margin-top: 20px;
+        }
+
+        .invisible-districts{
+            display: none;
+        }
+
+        .limited-text{
+            overflow: hidden;
+            position: relative;
+        }
+
+        .limited-text .bottom{
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+            width: 100%;
+            height: 60px;
+            opacity: 1;
+            transition: .3s;
+        }
+
+        .view-all-text-button {
+          font-family: 'Lora', serif;
+          font-size: 20px;
+          align-items: center;
+          background-color: white;
+          border: none !important;
+          box-sizing: border-box;
+          color: #929292 !important;
+          cursor: pointer;
+          display: inline-flex;
+          justify-content: center;
+          line-height: 1.25;
+          min-height: 3rem;
+          padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+          position: relative;
+          text-decoration: none;
+          transition: all 250ms;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+          vertical-align: baseline;
+          width: auto;
+        }
+
+        .view-all-text-button:hover,
+        .view-all-text-button:focus {
+            color: black;
+            border: none !important;
+
+        }
+
+        .view-all-text-button:hover {
+            transform: translateY(-1px);
+            border: none !important;
+        }
+
+        .view-all-text-button:active {
+          background-color: white;
+          border: none !important;
+          color: black;
+          transform: translateY(0);
+        }
+
+
+        .view-all-districts-button {
+          font-family: 'Lora', serif;
+          font-size: 20px;
+          align-items: center;
+          background-color: white;
+          border: none !important;
+          box-sizing: border-box;
+          color: #929292 !important;
+          cursor: pointer;
+          display: inline-flex;
+          justify-content: center;
+          line-height: 1.25;
+          min-height: 3rem;
+          padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+          position: relative;
+          text-decoration: none;
+          transition: all 250ms;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+          vertical-align: baseline;
+          width: auto;
+        }
+
+        .view-all-districts-button:hover,
+        .view-all-districts-button:focus {
+            color: black;
+            border: none !important;
+
+        }
+
+        .view-all-districts-button:hover {
+            transform: translateY(-1px);
+            border: none !important;
+        }
+
+        .view-all-districts-button:active {
+          background-color: white;
+          border: none !important;
+          color: black;
+          transform: translateY(0);
+        }
+
+    }
+
+    @media screen and (min-width : 480px) {
+
+        .map{
+            width: 315px;
+            margin-top: 8px;
+
+        }
+
+        .view-all-districts-button{
+            display: none;
+        }
+
+        .view-all-text-button{
+            display: none;
+        }
+
+        .limited-text{
+            overflow: hidden;
+            position: relative;
+            max-height: max-content !important;
+        }
+
+        .district-group{
+            max-height: max-content !important;
+        }
+
+
+        .limited-text .bottom{
+            display: none;
+        }
+
+    }
+
+    .district{
+        margin: 10px !important;
+        border: 1px solid rgba(0,0,0,.125) !important;
+    }
+
+
+
+
+
+
+</style>
+
+
+<script>
+    $(document).ready(function(){
+      $('.view-all-text-button').click(function(){
+
+        var num = $('.view-all-text-button').index( this );
+
+        if ($(this).context.textContent == "Показать полностью"){
+            $(this).context.textContent = "Скрыть";
+            ($('.limited-text')[num]).style.maxHeight = "2000px";
+            ($('.bottom')[num]).style.display = "none";
+        } else {
+            ($('.bottom')[num]).style.display = "block";
+            ($('.limited-text')[num]).style.maxHeight = "100px";
+            $(this).context.textContent = "Показать полностью";
+        }
+      });
+    });
+
+        $(document).ready(function(){
+      $('.view-all-districts-button').click(function(){
+
+
+        var num = $('.view-all-districts-button').index( this );
+        ($('.invisible-districts')).eq(num).slideToggle()
+
+        if ($(this).context.textContent == "Показать полностью"){
+            $(this).context.textContent = "Скрыть";
+        } else {
+            $(this).context.textContent = "Показать полностью";
+        }
+      });
+    });
+</script>
+
+
+<body>
+    <div class="col">
+
+        {% include "patterns/navbar.html" %}
+
+    </div>
+
+
+
+
+    <div class="article-clean">
+        <div class="container">
+            <div class="row d-lg-flex " style="justify-content: space-evenly">
+                <div class="col-md-7 col-lg-6 col-xl-5" id="text-info">
+                    <figure style="margin-top: 100px; letter-spacing: normal; font-size: 26px;flex-flow: wrap;">
+                        <figcaption>Кто мы такие?{{ form_display }}</figcaption>
+                    </figure>
+
+                        <p style="color: black; font-size: 16px; margin-bottom: 30px; ">
+                            Город растёт, развивается и бурлит: в Москве появляются новые
+                            форматы, новые события, новые лица.
+                            Наш проект — современное видение преподнесения знаний, связанных с культурой,
+                            историей и архитектурой мегаполиса. Личные экскурсии по
+                            разным районам Москвы подарят не только сухие факты, но и
+                            живые истории старожилов, городские легенды и скрытые
+                            урбанистические шедевры. Открытые диалоги, семейные тайны и
+                            культурное достояние помогут нам преподнести обычным
+                            жителям каждый московский район, как целостный объект
+                            искусства.
+                            Мы — новая ветвь любви к своему городу.
+                        </p>
+                        <div class="d-flex" >
+                            <a class="social-links" style="margin-right: 20px">Вконтакте</a>
+                            <a class="social-links" style="margin-right: 20px">Инстаграм</a>
+                            <a class="social-links ">Телеграм</a>
+                        </div>
+                </div>
+                <div class="col-md-6 col-lg-5 col-xl-4 d-flex " style="flex-direction: column;    align-items: center;" id="svg-info">
+                    <figure style="margin-top: 100px; letter-spacing: normal; font-size: 26px;">
+                        <figcaption>Выбери округ</figcaption>
+                    </figure>
+                    {% svg "main_map" %}
+                </div>
+            </div>
+        </div>
+
+        {% for region in regions %}
+            <span  id="block{{ region.id }}"></span>
+            <div class="container">
+                <div class="row d-flex" style="justify-content: space-evenly; margin-top: 100px;flex-flow: wrap;">
+                    <div class="col-md-7 col-lg-6 col-xl-5" id="text-info">
+
+                        <figure style=" letter-spacing: normal; font-size: 26px;">
+                            <figcaption>{{ region.name }}</figcaption>
+                        </figure>
+
+                        <p style="color: black; font-size: 16px; margin-bottom: 30px;">
+                            {{ region.description|linebreaksbr }}
+                        </p>
+
+                        <div class="d-flex" style="justify-content: space-between;">
+                            {% for district in region.district_set.all %}
+                                <a class="social-links">{{ district.name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-5 col-xl-4 d-flex " style="flex-direction: column;    align-items: center; justify-content: center" id="svg-info">
+                        {% svg region %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+
+    </div>
+
+</body>
+
+</html>

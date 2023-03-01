@@ -1,0 +1,5 @@
+{% autoescape off %}
+Имя: {{ new_request.name }}
+Способ связи: {{ new_request.description }}
+Хочет быть экскурсоводом: {% if new_request.resume %}Да{% else %}Нет{% endif %}
+{% endautoescape %}
