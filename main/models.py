@@ -16,6 +16,7 @@ class Request(models.Model):
 
 class Region(models.Model):
     name = models.CharField("название", max_length=30)
+    svg_name = models.CharField("svg", max_length=30, blank=True)
     description = models.TextField("описание")
 
     def __str__(self):
