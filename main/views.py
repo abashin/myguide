@@ -37,6 +37,7 @@ def new_request(request):
                     'new_request': new_request
                 })
                 to_email = "uebashin@gmail.com"
+                to_email_yariq = "yaroslav_kucc@mail.ru"
                 mail_subject = "Новая заявка на экскурсию от " + new_request.name
                 email = EmailMessage(
                     mail_subject,
@@ -46,6 +47,15 @@ def new_request(request):
                 )
                 email.fail_silently = False
                 email.send()
+
+                email_yariq = EmailMessage(
+                    mail_subject,
+                    message,
+                    settings.EMAIL_HOST_USER,
+                    to=[to_email_yariq]
+                )
+                email_yariq.fail_silently = False
+                email_yariq.send()
         else:
                 print(form.errors)
 
