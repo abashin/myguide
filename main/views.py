@@ -18,9 +18,9 @@ def home_view(request):
 
 
 
-def district_detail_view(request, district_id):
+def district_detail_view(request, translit_link):
     args = {
-        'district': District.objects.get(id=district_id),
+        'district': District.objects.get(translit_link=translit_link),
         'form': NewRequestForm(),
     }
     return render(request, 'district.html', args)

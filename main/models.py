@@ -30,6 +30,7 @@ class Region(models.Model):
 
 class District(models.Model):
     region = models.ForeignKey(Region, on_delete=models.CASCADE, blank=True)
+    translit_link = models.CharField("имя для ссылки", max_length=30, default="")
     guide_name = models.CharField("имя гида", max_length=30, blank=True)
     guide_avatar = models.ImageField("аватарка экскурсовода", upload_to="avatars/", blank=True)
     guide_description = models.TextField("описание экскурсовода", blank=True)
