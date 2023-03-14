@@ -7,7 +7,6 @@
 
     <title>Мой экскурсовод</title>
     {% include "patterns/head.html" %}
-    {% include "patterns/feedback.html" %}
 </head>
 
 
@@ -245,10 +244,9 @@
 <body>
     <div class="col">
 
+        {% include "patterns/feedback.html" %}
         {% include "patterns/navbar.html" %}
-
     </div>
-
 
 
 
@@ -256,7 +254,7 @@
         <div class="container">
             <div class="row d-lg-flex " style="justify-content: space-evenly">
                 <div class="col-md-7 col-lg-6 col-xl-5" id="text-info">
-                    <figure style="margin-top: 100px; letter-spacing: normal; font-size: 26px;flex-flow: wrap;">
+                    <figure style="margin-top: 100px; letter-spacing: normal; font-size: 26px;flex-flow: wrap;font-weight: 500;">
                         <figcaption>Кто мы такие?{{ form_display }}</figcaption>
                     </figure>
 
@@ -280,7 +278,7 @@
                         </div>
                 </div>
                 <div class="col-md-6 col-lg-5 col-xl-4 d-flex " style="flex-direction: column;    align-items: center;" id="svg-info">
-                    <figure style="margin-top: 100px; letter-spacing: normal; font-size: 26px;">
+                    <figure style="margin-top: 100px; letter-spacing: normal; font-size: 26px;font-weight: 500;">
                         <figcaption>Выбери округ</figcaption>
                     </figure>
                     {% svg "main_map" %}
@@ -294,7 +292,7 @@
                 <div class="row d-flex" style="justify-content: space-evenly; margin-top: 100px;flex-flow: wrap;">
                     <div class="col-md-7 col-lg-6 col-xl-5" id="text-info">
 
-                        <figure style=" letter-spacing: normal; font-size: 26px;">
+                        <figure style=" letter-spacing: normal; font-size: 26px;font-weight: 500;">
                             <figcaption>{{ region.name }}</figcaption>
                         </figure>
 

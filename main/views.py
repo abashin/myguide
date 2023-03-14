@@ -11,7 +11,7 @@ from django.core.mail import EmailMessage
 def home_view(request):
 
     args = {
-        'regions': Region.objects.all(),
+        'regions': Region.objects.all().order_by('-id'),
         'form': NewRequestForm(),
     }
     return render(request, 'home.html', args)

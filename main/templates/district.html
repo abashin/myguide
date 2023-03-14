@@ -9,6 +9,28 @@
 </head>
 
 <style>
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+        .title{
+            padding: 0px 10px;
+        }
+
+        .heater{
+            padding: 0px 10px;
+        }
+
+        figcaption{
+            padding: 0px 10px;
+        }
+
+        .text{
+            padding: 0px 10px;
+        }
+
+        .main-col{
+            padding: 0px;
+        }
+    }
+
     figure{
         margin: 0px;
     }
@@ -18,13 +40,28 @@
         font-size: 40px;
         margin-top: 26px;
         color: black;
+        line-height: 54px;
+        font-weight: 500;
     }
 
     .heater{
         margin-top: 23px;
         font-size: 24px;
+        line-height: 33px;
         margin-bottom: 0px;
+        font-weight: 500;
+        color: black;
     }
+
+    figcaption{
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+
+        color: rgba(0, 0, 0, 0.78);
+    }
+
+
 
     .img-fluid{
         margin-top: 86px;
@@ -33,7 +70,9 @@
 
     .text{
         margin-top: 26px;
-        font-size: 17px
+        font-size: 17px;
+        line-height: 23px;
+        color: black;
     }
 
     .
@@ -42,43 +81,43 @@
 
 <body>
     <div class="col">
-        {% include "patterns/navbar.html" %}
+
         {% include "patterns/feedback.html" %}
+        {% include "patterns/navbar.html" %}
     </div>
 
     <div class="article-clean">
         <div class="container">
             <div class="row">
-                <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
+                <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2 main-col">
                     <div class="text-center intro">
 
-                        <div class="text-left text">
+                        <div class="text-left ">
 
                             {% if district.image1 %}
                             <figure >
                                 <img class="img-fluid" style="margin-top: 46px;" src="{{ district.image1.url }}" >
                             </figure>
                             {% endif %}
-                            <div>
-                                <p class="title">
-                                    {{ district.name }}
-                                </p>
-                            </div>
 
-                            <div>
-                                <p class="heater">
-                                    {{ district.title1  }}
-                                </p>
-                            </div>
+                            <figure>
+                                <figcaption>{{ district.caption1 }}</figcaption>
+                            </figure>
 
 
+                            <p class="title">
+                                {{ district.name }}
+                            </p>
 
 
-                            <div>
-                                <p class="text">
-                                    {{ district.text1|linebreaksbr  }}
-                                </p>
-                            </div>
+                            <p class="heater">
+                                {{ district.title1  }}
+                            </p>
+
+
+                            <p class="text">
+                                {{ district.text1|linebreaksbr  }}
+                            </p>
 
 
                             {% if district.image2 %}
@@ -87,19 +126,20 @@
                             </figure>
                             {% endif %}
 
-                            <div>
-                                <p class="heater">
-                                    {{ district.title2  }}
-                                </p>
-                            </div>
+                            <figure>
+                                <figcaption>{{ district.caption2 }}</figcaption>
+                            </figure>
+
+
+                            <p class="heater">
+                                {{ district.title2  }}
+                            </p>
 
 
 
-                            <div>
-                                <p class="text">
-                                    {{ district.text2|linebreaksbr  }}
-                                </p>
-                            </div>
+                            <p class="text">
+                                {{ district.text2|linebreaksbr  }}
+                            </p>
 
 
                             {% if district.image3 %}
@@ -108,19 +148,19 @@
                             </figure>
                             {% endif %}
 
-                            <div>
-                                <p class="heater">
-                                    {{ district.title3  }}
-                                </p>
-                            </div>
+                            <figure>
+                                <figcaption>{{ district.caption3 }}</figcaption>
+                            </figure>
+
+                            <p class="heater">
+                                {{ district.title3  }}
+                            </p>
 
 
 
-                            <div>
-                                <p class="text">
-                                    {{ district.text3|linebreaksbr  }}
-                                </p>
-                            </div>
+                            <p class="text">
+                                {{ district.text3|linebreaksbr  }}
+                            </p>
 
                             {% if district.image4 %}
                             <figure>
@@ -128,19 +168,20 @@
                             </figure>
                             {% endif %}
 
-                            <div>
-                                <p class="heater">
-                                    {{ district.title4  }}
-                                </p>
-                            </div>
+                            <figure>
+                                <figcaption>{{ district.caption4 }}</figcaption>
+                            </figure>
+
+                            <p class="heater">
+                                {{ district.title4  }}
+                            </p>
 
 
 
-                            <div>
-                                <p class="text">
-                                    {{ district.text4|linebreaksbr  }}
-                                </p>
-                            </div>
+                            <p class="text">
+                                {{ district.text4|linebreaksbr  }}
+                            </p>
+
 
                             {% if district.image5 %}
                             <figure>
@@ -148,19 +189,19 @@
                             </figure>
                             {% endif %}
 
-                            <div>
-                                <p class="heater">
-                                    {{ district.title5  }}
-                                </p>
-                            </div>
+                            <figure>
+                                <figcaption>{{ district.caption5 }}</figcaption>
+                            </figure>
+
+                            <p class="heater">
+                                {{ district.title5  }}
+                            </p>
 
 
 
-                            <div>
-                                <p class="text">
-                                    {{ district.text5|linebreaksbr  }}
-                                </p>
-                            </div>
+                            <p class="text">
+                                {{ district.text5|linebreaksbr  }}
+                            </p>
 
                             {% if district.image6 %}
                             <figure>
@@ -168,19 +209,19 @@
                             </figure>
                             {% endif %}
 
-                            <div>
-                                <p class="heater">
-                                    {{ district.title6  }}
-                                </p>
-                            </div>
+                            <figure>
+                                <figcaption>{{ district.caption6 }}</figcaption>
+                            </figure>
+
+                            <p class="heater">
+                                {{ district.title6  }}
+                            </p>
 
 
 
-                            <div>
-                                <p class="text">
-                                    {{ district.text6|linebreaksbr  }}
-                                </p>
-                            </div>
+                            <p class="text">
+                                {{ district.text6|linebreaksbr  }}
+                            </p>
 
                             {% if district.image7 %}
                             <figure>
@@ -188,19 +229,81 @@
                             </figure>
                             {% endif %}
 
-                            <div>
-                                <p class="heater">
-                                    {{ district.title7  }}
-                                </p>
-                            </div>
+                            <figure>
+                                <figcaption>{{ district.caption7 }}</figcaption>
+                            </figure>
+
+                            <p class="heater">
+                                {{ district.title7  }}
+                            </p>
 
 
 
-                            <div>
-                                <p class="text">
-                                    {{ district.text7|linebreaksbr  }}
-                                </p>
-                            </div>
+                            <p class="text">
+                                {{ district.text7|linebreaksbr  }}
+                            </p>
+
+                            {% if district.image8 %}
+                            <figure>
+                                <img class="img-fluid"  src="{{ district.image8.url }}" >
+                            </figure>
+                            {% endif %}
+
+                            <figure>
+                                <figcaption>{{ district.caption8 }}</figcaption>
+                            </figure>
+
+                            <p class="heater">
+                                {{ district.title8  }}
+                            </p>
+
+
+
+                            <p class="text">
+                                {{ district.text8|linebreaksbr  }}
+                            </p>
+
+
+                            {% if district.image9 %}
+                            <figure>
+                                <img class="img-fluid"  src="{{ district.image9.url }}" >
+                            </figure>
+                            {% endif %}
+
+                            <figure>
+                                <figcaption>{{ district.caption9 }}</figcaption>
+                            </figure>
+
+                            <p class="heater">
+                                {{ district.title9  }}
+                            </p>
+
+
+
+                            <p class="text">
+                                {{ district.text9|linebreaksbr  }}
+                            </p>
+
+
+                            {% if district.image10 %}
+                            <figure>
+                                <img class="img-fluid"  src="{{ district.image10.url }}" >
+                            </figure>
+                            {% endif %}
+
+                            <figure>
+                                <figcaption>{{ district.caption10 }}</figcaption>
+                            </figure>
+
+                            <p class="heater">
+                                {{ district.title10  }}
+                            </p>
+
+
+
+                            <p class="text">
+                                {{ district.text10|linebreaksbr  }}
+                            </p>
 
 
 
@@ -219,37 +322,7 @@
 
 
 
-</body>
-<style>
-            .save-button {
-    align-items: center;
-    background-color: #3153CB;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    box-shadow: rgb(0 0 0 / 2%) 0 1px 3px 0;
-    box-sizing: border-box;
-    color: white;
-    cursor: pointer;
-    display: inline-flex;
-    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    justify-content: center;
-    line-height: 1.25;
-    margin: 0;
-    min-height: 3rem;
-    padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
-    position: relative;
-    text-decoration: none;
-    transition: all 250ms;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: baseline;
-    width: auto;
-}
+<body>
 
-
-</style>
 
 </html>
